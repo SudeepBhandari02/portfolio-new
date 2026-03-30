@@ -13,9 +13,10 @@ export default function App() {
   
   const sections = [
     { id: 'home', label: 'Home', chapter: 'Prologue' },
-    { id: 'projects', label: 'Works', chapter: 'Chapter I' },
-    { id: 'about', label: 'About', chapter: 'Chapter II' },
-    { id: 'stack', label: 'Stack', chapter: 'Chapter III' },
+    { id: 'about', label: 'About', chapter: 'Chapter I' },
+    { id: 'projects', label: 'Works', chapter: 'Chapter II' },
+    { id: 'experience', label: 'Experience', chapter: 'Chapter III' },
+    { id: 'stack', label: 'Stack', chapter: 'Chapter IV' },
     { id: 'contact', label: 'Reach Us', chapter: 'The End' },
   ];
 
@@ -255,52 +256,6 @@ export default function App() {
             </p>
           </div>
           <button 
-            onClick={() => scrollToSection('experience')}
-            className="mt-12 text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2 group"
-          >
-            Next Chapter 
-            <motion.div
-              animate={{ y: [0, 4, 0] }}
-              transition={{ repeat: Infinity, duration: 2 }}
-            >
-              <ChevronDown size={16} />
-            </motion.div>
-          </button>
-        </motion.div>
-      </section>
-
-      {/* Experience Section */}
-      <section id="experience" className="relative z-10 snap-start h-screen w-full flex flex-col items-center justify-center px-8">
-        <motion.div 
-          initial="initial"
-          whileInView="whileInView"
-          viewport={fadeVariants.viewport}
-          variants={fadeVariants}
-          className="max-w-7xl w-full"
-        >
-          <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-muted-foreground/50 mb-4 block">
-            {sections.find(s => s.id === 'experience')?.chapter}
-          </span>
-          <h2 className="text-4xl md:text-6xl mb-12 font-normal tracking-tight" style={{ fontFamily: "'Instrument Serif', serif" }}>
-            Experience
-          </h2>
-          <div className="space-y-12">
-            <div className="group relative pl-8 border-l border-border/50 hover:border-foreground transition-colors">
-              <div className="absolute -left-[5px] top-0 h-2.5 w-2.5 rounded-full bg-border group-hover:bg-foreground transition-colors" />
-              <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                <h3 className="text-2xl font-medium">Full Stack Developer Intern</h3>
-                <span className="text-muted-foreground font-mono text-sm uppercase tracking-wider">Jun 2025 – Present</span>
-              </div>
-              <p className="text-xl text-foreground/90 mb-4">StackPro Technologies</p>
-              <ul className="space-y-3 text-muted-foreground max-w-3xl">
-                <li>• Architected a multi-college survey platform for institutional data collection.</li>
-                <li>• Migrated AWS infrastructure to GCP with zero data loss.</li>
-                <li>• Refactored Snowflake-based query engines using Factory and Adapter patterns.</li>
-                <li>• Implemented AI agents for automated metadata mapping across ERP systems.</li>
-              </ul>
-            </div>
-          </div>
-          <button 
             onClick={() => scrollToSection('projects')}
             className="mt-12 text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2 group"
           >
@@ -316,7 +271,7 @@ export default function App() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="relative z-10 snap-start h-screen w-full flex flex-col items-center justify-center px-8">
+      <section id="projects" className="relative z-10 snap-start min-h-screen w-full flex flex-col items-center justify-center py-24 px-8">
         <motion.div 
           initial="initial"
           whileInView="whileInView"
@@ -327,13 +282,13 @@ export default function App() {
           <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-muted-foreground/50 mb-4 block">
             {sections.find(s => s.id === 'projects')?.chapter}
           </span>
-          <h2 className="text-4xl md:text-6xl mb-8 font-normal tracking-tight" style={{ fontFamily: "'Instrument Serif', serif" }}>
+          <h2 className="text-4xl md:text-6xl mb-6 font-normal tracking-tight" style={{ fontFamily: "'Instrument Serif', serif" }}>
             Selected Works
           </h2>
-          <p className="text-muted-foreground mb-12 max-w-2xl">
+          <p className="text-muted-foreground mb-10 max-w-2xl text-sm md:text-base">
             Highlighting full-stack MERN applications, cross-platform React Native apps, and advanced RAG-powered agents.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
               {
                 title: "Frnd Tracker",
@@ -390,19 +345,65 @@ export default function App() {
                 link: "https://github.com"
               }
             ].map((project, i) => (
-              <div key={i} className="liquid-glass group p-6 rounded-3xl transition-all hover:scale-[1.01]">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-medium tracking-tight uppercase">{project.title}</h3>
+              <div key={i} className="liquid-glass group p-4 rounded-2xl transition-all hover:scale-[1.01]">
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-lg font-medium tracking-tight uppercase">{project.title}</h3>
                   <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-                    <ExternalLink size={18} />
+                    <ExternalLink size={16} />
                   </a>
                 </div>
-                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{project.desc}</p>
-                <div className="text-[10px] font-mono uppercase tracking-widest text-foreground/50">
+                <p className="text-xs text-muted-foreground mb-4 leading-relaxed line-clamp-2">{project.desc}</p>
+                <div className="text-[9px] font-mono uppercase tracking-widest text-foreground/50">
                   {project.tech}
                 </div>
               </div>
             ))}
+          </div>
+          <button 
+            onClick={() => scrollToSection('experience')}
+            className="mt-10 text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2 group"
+          >
+            Next Chapter 
+            <motion.div
+              animate={{ y: [0, 4, 0] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+            >
+              <ChevronDown size={16} />
+            </motion.div>
+          </button>
+        </motion.div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="relative z-10 snap-start h-screen w-full flex flex-col items-center justify-center px-8">
+        <motion.div 
+          initial="initial"
+          whileInView="whileInView"
+          viewport={fadeVariants.viewport}
+          variants={fadeVariants}
+          className="max-w-7xl w-full"
+        >
+          <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-muted-foreground/50 mb-4 block">
+            {sections.find(s => s.id === 'experience')?.chapter}
+          </span>
+          <h2 className="text-4xl md:text-6xl mb-12 font-normal tracking-tight" style={{ fontFamily: "'Instrument Serif', serif" }}>
+            Experience
+          </h2>
+          <div className="space-y-12">
+            <div className="group relative pl-8 border-l border-border/50 hover:border-foreground transition-colors">
+              <div className="absolute -left-[5px] top-0 h-2.5 w-2.5 rounded-full bg-border group-hover:bg-foreground transition-colors" />
+              <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                <h3 className="text-2xl font-medium">Full Stack Developer Intern</h3>
+                <span className="text-muted-foreground font-mono text-sm uppercase tracking-wider">Jun 2025 – Present</span>
+              </div>
+              <p className="text-xl text-foreground/90 mb-4">StackPro Technologies</p>
+              <ul className="space-y-3 text-muted-foreground max-w-3xl">
+                <li>• Architected a multi-college survey platform for institutional data collection.</li>
+                <li>• Migrated AWS infrastructure to GCP with zero data loss.</li>
+                <li>• Refactored Snowflake-based query engines using Factory and Adapter patterns.</li>
+                <li>• Implemented AI agents for automated metadata mapping across ERP systems.</li>
+              </ul>
+            </div>
           </div>
           <button 
             onClick={() => scrollToSection('stack')}
